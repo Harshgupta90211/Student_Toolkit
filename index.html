@@ -1,0 +1,948 @@
+ <!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Student Toolkit - Smart, modern productivity tools for students including CGPA Calculator, Basic Calculator, Grade Converter, Notes, and Backlog Tracker.">
+  <title>Student Toolkit | Smart Tools for Students</title>
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- App Container -->
+  <div class="app-layout">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar" aria-label="Main Navigation">
+      <div class="sidebar-header">
+        <div class="brand">
+          <div class="brand-icon" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">Student<span class="brand-accent">Toolkit</span></span>
+            <span class="brand-badge">Pro</span>
+          </div>
+        </div>
+        <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="Close navigation menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-label">WORKSPACE</div>
+        <ul class="nav-list">
+          <li>
+            <button class="nav-item active" data-view="dashboard" id="nav-dashboard">
+              <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="9" rx="1"></rect>
+                <rect x="14" y="3" width="7" height="5" rx="1"></rect>
+                <rect x="14" y="12" width="7" height="9" rx="1"></rect>
+                <rect x="3" y="16" width="7" height="5" rx="1"></rect>
+              </svg>
+              <span>Dashboard</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-item" data-view="calculator" id="nav-calculator">
+              <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+                <line x1="8" y1="6" x2="16" y2="6"></line>
+                <line x1="16" y1="14" x2="16" y2="18"></line>
+                <path d="M16 10h.01"></path>
+                <path d="M12 10h.01"></path>
+                <path d="M8 10h.01"></path>
+                <path d="M12 14h.01"></path>
+                <path d="M8 14h.01"></path>
+                <path d="M12 18h.01"></path>
+                <path d="M8 18h.01"></path>
+              </svg>
+              <span>Calculator</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-item" data-view="cgpa" id="nav-cgpa">
+              <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+                <path d="M6 6h10"></path>
+                <path d="M6 10h10"></path>
+                <path d="M6 14h6"></path>
+              </svg>
+              <span>CGPA Calculator</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-item" data-view="grade" id="nav-grade">
+              <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2v20"></path>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+              <span>Grade Converter</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-item" data-view="notes" id="nav-notes">
+              <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              <span>Notes</span>
+              <span class="nav-badge" id="notesNavBadge">0</span>
+            </button>
+          </li>
+          <li>
+            <button class="nav-item" data-view="backlog" id="nav-backlog">
+              <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                <line x1="12" y1="9" x2="12" y2="13"></line>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+              <span>Backlog Tracker</span>
+              <span class="nav-badge alert" id="backlogNavBadge">0</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-profile-card">
+          <div class="user-avatar" aria-hidden="true">ST</div>
+          <div class="user-meta">
+            <span class="user-name">Student Portal</span>
+            <span class="user-status"><span class="status-dot"></span> Academic Session</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Mobile Drawer Overlay -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop" aria-hidden="true"></div>
+
+    <!-- Main Content Shell -->
+    <div class="app-main">
+      
+      <!-- Top Application Header -->
+      <header class="app-header">
+        <div class="header-left">
+          <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+          <div class="header-titles">
+            <h1 class="header-title">Student Toolkit</h1>
+            <p class="header-subtitle">Smart tools for students</p>
+          </div>
+        </div>
+
+        <div class="header-right">
+          <!-- Live Date & Clock -->
+          <div class="header-datetime" id="headerDateTime" title="Current system time">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span id="liveTimeText">Loading time...</span>
+          </div>
+
+          <!-- Theme Mode Switcher -->
+          <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle dark/light theme" title="Toggle color theme">
+            <span class="theme-icon sun-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+            </span>
+            <span class="theme-icon moon-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </span>
+          </button>
+
+          <!-- User Quick Chip -->
+          <div class="user-chip" title="Active student session">
+            <div class="user-chip-avatar">S</div>
+            <span class="user-chip-label">Student</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- View Containers -->
+      <main class="main-body" id="mainContent">
+
+        <!-- ========================================== -->
+        <!-- 1. DASHBOARD VIEW                          -->
+        <!-- ========================================== -->
+        <section class="view-panel active" id="view-dashboard" aria-labelledby="dash-title">
+          <div class="view-header">
+            <div>
+              <h2 class="view-heading" id="dash-title">Dashboard Overview</h2>
+              <p class="view-subheading">Track your academic progress, tools, and pending tasks in one place.</p>
+            </div>
+          </div>
+
+          <!-- Dynamic Statistics Grid -->
+          <div class="stats-grid">
+            <div class="stat-card" data-stat="cgpa">
+              <div class="stat-icon-wrapper cgpa-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                  <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                </svg>
+              </div>
+              <div class="stat-info">
+                <span class="stat-label">Calculated CGPA</span>
+                <div class="stat-val-row">
+                  <span class="stat-number" id="dashCgpaVal">0.00</span>
+                  <span class="stat-subtext" id="dashCgpaScale">/ 10.0</span>
+                </div>
+                <span class="stat-footer" id="dashCgpaStatus">No subjects calculated yet</span>
+              </div>
+            </div>
+
+            <div class="stat-card" data-stat="notes">
+              <div class="stat-icon-wrapper notes-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                </svg>
+              </div>
+              <div class="stat-info">
+                <span class="stat-label">Total Notes</span>
+                <div class="stat-val-row">
+                  <span class="stat-number" id="dashNotesVal">0</span>
+                  <span class="stat-subtext">Saved</span>
+                </div>
+                <span class="stat-footer" id="dashNotesImportant">0 marked important</span>
+              </div>
+            </div>
+
+            <div class="stat-card" data-stat="backlogs">
+              <div class="stat-icon-wrapper backlog-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                  <line x1="12" y1="9" x2="12" y2="13"></line>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+              </div>
+              <div class="stat-info">
+                <span class="stat-label">Pending Backlogs</span>
+                <div class="stat-val-row">
+                  <span class="stat-number" id="dashBacklogsVal">0</span>
+                  <span class="stat-subtext">Subjects</span>
+                </div>
+                <span class="stat-footer" id="dashBacklogsCleared">0 cleared</span>
+              </div>
+            </div>
+
+            <div class="stat-card" data-stat="tools">
+              <div class="stat-icon-wrapper tools-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
+                </svg>
+              </div>
+              <div class="stat-info">
+                <span class="stat-label">Productivity Tools</span>
+                <div class="stat-val-row">
+                  <span class="stat-number">5</span>
+                  <span class="stat-subtext">Ready</span>
+                </div>
+                <span class="stat-footer">All systems active</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Access Cards -->
+          <div class="dashboard-section-title">Quick Tool Launchers</div>
+          <div class="tool-launcher-grid">
+            <button class="launcher-card" onclick="Navigation.navigateTo('calculator')">
+              <div class="launcher-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+                  <line x1="8" y1="6" x2="16" y2="6"></line>
+                  <line x1="16" y1="14" x2="16" y2="18"></line>
+                </svg>
+              </div>
+              <div class="launcher-details">
+                <h4>Basic Calculator</h4>
+                <p>Arithmetic keypad with zero-division safeguard</p>
+              </div>
+              <span class="launcher-arrow">→</span>
+            </button>
+
+            <button class="launcher-card" onclick="Navigation.navigateTo('cgpa')">
+              <div class="launcher-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"></path>
+                  <path d="M6 6h10"></path>
+                </svg>
+              </div>
+              <div class="launcher-details">
+                <h4>CGPA Calculator</h4>
+                <p>Dynamic subject credits & weighted grading</p>
+              </div>
+              <span class="launcher-arrow">→</span>
+            </button>
+
+            <button class="launcher-card" onclick="Navigation.navigateTo('grade')">
+              <div class="launcher-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2v20"></path>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+              </div>
+              <div class="launcher-details">
+                <h4>Grade Converter</h4>
+                <p>Marks-to-grade converter with performance matrix</p>
+              </div>
+              <span class="launcher-arrow">→</span>
+            </button>
+
+            <button class="launcher-card" onclick="Navigation.navigateTo('notes')">
+              <div class="launcher-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+              </div>
+              <div class="launcher-details">
+                <h4>Study Notes</h4>
+                <p>Categorized, searchable notes with starred priority</p>
+              </div>
+              <span class="launcher-arrow">→</span>
+            </button>
+          </div>
+
+          <!-- Recent Activity Dual Preview -->
+          <div class="dash-dual-grid">
+            <div class="panel-card">
+              <div class="panel-card-header">
+                <h3>Recent Notes</h3>
+                <button class="btn-text" onclick="Navigation.navigateTo('notes')">View All</button>
+              </div>
+              <div class="dash-preview-list" id="dashRecentNotesList">
+                <div class="empty-state-small">No notes created yet. Click Notes to add your first note!</div>
+              </div>
+            </div>
+
+            <div class="panel-card">
+              <div class="panel-card-header">
+                <h3>Backlog Status</h3>
+                <button class="btn-text" onclick="Navigation.navigateTo('backlog')">Manage Backlogs</button>
+              </div>
+              <div class="dash-preview-list" id="dashBacklogPreviewList">
+                <div class="empty-state-small">No backlogs recorded. Great work staying on track!</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 2. BASIC CALCULATOR VIEW                   -->
+        <!-- ========================================== -->
+        <section class="view-panel" id="view-calculator" aria-labelledby="calc-title">
+          <div class="view-header">
+            <div>
+              <h2 class="view-heading" id="calc-title">Basic Calculator</h2>
+              <p class="view-subheading">Perform standard arithmetic computations with full keyboard and on-screen keypad support.</p>
+            </div>
+          </div>
+
+          <div class="calc-centered-container">
+            <div class="calc-card" role="region" aria-label="Interactive Calculator">
+              <!-- Calculator Header Bar -->
+              <div class="calc-topbar">
+                <span class="calc-badge">Standard Mode</span>
+                <span class="calc-keyboard-hint">Keyboard: 0-9, +, -, *, /, Enter, Esc</span>
+              </div>
+
+              <!-- Screen Display -->
+              <div class="calc-screen" aria-live="polite">
+                <div class="calc-equation" id="calcEquation" aria-label="Current expression">&nbsp;</div>
+                <div class="calc-display-main" id="calcDisplay" aria-label="Calculation result">0</div>
+              </div>
+
+              <!-- In-UI Error Warning Banner -->
+              <div class="calc-error-banner" id="calcErrorBanner" role="alert">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <span id="calcErrorText">Error message</span>
+              </div>
+
+              <!-- Calculator Keypad Grid -->
+              <div class="calc-keypad" role="group" aria-label="Calculator keypad">
+                <!-- Row 1 -->
+                <button class="calc-btn action-btn" data-action="clear" title="Clear All (Escape)">C</button>
+                <button class="calc-btn action-btn" data-action="delete" title="Backspace">⌫</button>
+                <button class="calc-btn action-btn" data-action="percent" title="Percentage">%</button>
+                <button class="calc-btn op-btn" data-action="operator" data-op="/" title="Divide (/)">÷</button>
+
+                <!-- Row 2 -->
+                <button class="calc-btn num-btn" data-num="7">7</button>
+                <button class="calc-btn num-btn" data-num="8">8</button>
+                <button class="calc-btn num-btn" data-num="9">9</button>
+                <button class="calc-btn op-btn" data-action="operator" data-op="*" title="Multiply (*)">×</button>
+
+                <!-- Row 3 -->
+                <button class="calc-btn num-btn" data-num="4">4</button>
+                <button class="calc-btn num-btn" data-num="5">5</button>
+                <button class="calc-btn num-btn" data-num="6">6</button>
+                <button class="calc-btn op-btn" data-action="operator" data-op="-" title="Subtract (-)">−</button>
+
+                <!-- Row 4 -->
+                <button class="calc-btn num-btn" data-num="1">1</button>
+                <button class="calc-btn num-btn" data-num="2">2</button>
+                <button class="calc-btn num-btn" data-num="3">3</button>
+                <button class="calc-btn op-btn" data-action="operator" data-op="+" title="Add (+)">+</button>
+
+                <!-- Row 5 -->
+                <button class="calc-btn action-btn" data-action="negate" title="Negate sign">±</button>
+                <button class="calc-btn num-btn" data-num="0">0</button>
+                <button class="calc-btn num-btn" data-num="." title="Decimal point">.</button>
+                <button class="calc-btn equals-btn" data-action="calculate" title="Calculate (Enter)">=</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 3. CGPA CALCULATOR VIEW                    -->
+        <!-- ========================================== -->
+        <section class="view-panel" id="view-cgpa" aria-labelledby="cgpa-title">
+          <div class="view-header">
+            <div>
+              <h2 class="view-heading" id="cgpa-title">Dynamic CGPA Calculator</h2>
+              <p class="view-subheading">Add subjects with credit weightings to calculate your official cumulative GPA, total credits, and performance classification.</p>
+            </div>
+            <div class="view-actions">
+              <button class="btn btn-secondary" id="cgpaSampleBtn" type="button">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                </svg>
+                Load Sample
+              </button>
+              <button class="btn btn-secondary" id="cgpaResetBtn" type="button">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                  <path d="M3 3v5h5"></path>
+                </svg>
+                Reset All
+              </button>
+            </div>
+          </div>
+
+          <!-- Formula Info Callout -->
+          <div class="info-callout">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="callout-icon">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <div class="callout-body">
+              <strong>Calculation Standard:</strong> Weighted 10-Point Scale.
+              <code>CGPA = ∑(Subject Marks / 10 × Credits) / ∑(Credits)</code>.
+              When subjects have equal credits (e.g. 4 credits each), this mathematically equals the standard <code>(Total Marks / Max Marks) × 10</code>.
+            </div>
+          </div>
+
+          <div class="cgpa-layout-grid">
+            <!-- Subjects Table Container -->
+            <div class="panel-card">
+              <div class="panel-card-header">
+                <h3>Semester Subjects</h3>
+                <button class="btn btn-primary btn-sm" id="cgpaAddSubjectBtn" type="button">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                  </svg>
+                  Add Subject
+                </button>
+              </div>
+
+              <!-- In-UI CGPA Error Banner -->
+              <div class="form-error-banner" id="cgpaErrorBanner" role="alert" style="display: none;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <span id="cgpaErrorText">Validation error message</span>
+              </div>
+
+              <div class="table-responsive">
+                <table class="data-table" id="cgpaTable">
+                  <thead>
+                    <tr>
+                      <th style="width: 45%;">Subject Name</th>
+                      <th style="width: 25%;">Marks (0 - 100)</th>
+                      <th style="width: 20%;">Credits</th>
+                      <th style="width: 10%; text-align: center;">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="cgpaTableBody">
+                    <!-- Dynamic subject rows inserted by JS -->
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="cgpa-actions-bar">
+                <button class="btn btn-primary btn-lg" id="cgpaCalculateBtn" type="button">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 14 14"></polyline>
+                  </svg>
+                  Calculate CGPA
+                </button>
+              </div>
+            </div>
+
+            <!-- CGPA Result Summary Card -->
+            <div class="panel-card result-panel">
+              <div class="panel-card-header">
+                <h3>Academic Summary</h3>
+                <span class="badge badge-neutral" id="cgpaCalcTimestamp">Not calculated</span>
+              </div>
+
+              <div class="cgpa-result-display" id="cgpaResultCard">
+                <div class="cgpa-score-ring">
+                  <div class="cgpa-big-number" id="cgpaOutputVal">0.00</div>
+                  <span class="cgpa-score-caption">CGPA / 10.0</span>
+                </div>
+
+                <div class="cgpa-metrics-list">
+                  <div class="metric-row">
+                    <span class="metric-name">Equivalent Percentage:</span>
+                    <strong class="metric-val" id="cgpaPercentVal">0.0%</strong>
+                  </div>
+                  <div class="metric-row">
+                    <span class="metric-name">Total Credits Registered:</span>
+                    <strong class="metric-val" id="cgpaCreditsVal">0</strong>
+                  </div>
+                  <div class="metric-row">
+                    <span class="metric-name">Performance Classification:</span>
+                    <span class="badge badge-success" id="cgpaGradeBadge">Pending</span>
+                  </div>
+                </div>
+
+                <div class="cgpa-remarks-box" id="cgpaRemarksText">
+                  Enter subject marks and credits on the left, then click "Calculate CGPA" to generate your full performance report.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 4. GRADE CONVERTER VIEW                    -->
+        <!-- ========================================== -->
+        <section class="view-panel" id="view-grade" aria-labelledby="grade-title">
+          <div class="view-header">
+            <div>
+              <h2 class="view-heading" id="grade-title">Grade Converter</h2>
+              <p class="view-subheading">Convert percentage marks (0-100) into standardized letter grades and qualitative evaluation messages.</p>
+            </div>
+          </div>
+
+          <div class="grade-converter-grid">
+            <!-- Left: Converter Input Card -->
+            <div class="panel-card">
+              <div class="panel-card-header">
+                <h3>Marks to Grade Conversion</h3>
+              </div>
+
+              <form id="gradeForm" onsubmit="event.preventDefault(); GradeConverter.convert();">
+                <div class="form-group">
+                  <label for="gradeMarksInput" class="form-label">Enter Marks (0 to 100):</label>
+                  <div class="input-with-icon">
+                    <input 
+                      type="number" 
+                      id="gradeMarksInput" 
+                      class="form-control" 
+                      placeholder="e.g. 85" 
+                      min="0" 
+                      max="100" 
+                      step="any"
+                      required
+                    >
+                    <span class="input-unit">%</span>
+                  </div>
+                  <small class="form-hint">Supports whole numbers and decimals.</small>
+                </div>
+
+                <!-- In-UI Validation Error -->
+                <div class="form-error-banner" id="gradeErrorBanner" role="alert" style="display: none;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                  </svg>
+                  <span id="gradeErrorText">Please enter marks between 0 and 100</span>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary" id="convertGradeBtn">
+                    Convert to Grade
+                  </button>
+                  <button type="button" class="btn btn-secondary" onclick="GradeConverter.reset()">
+                    Clear
+                  </button>
+                </div>
+              </form>
+
+              <!-- Conversion Visual Result -->
+              <div class="grade-result-card" id="gradeResultBox" style="display: none;">
+                <div class="grade-badge-circle" id="gradeBadgeLetter">A+</div>
+                <div class="grade-result-info">
+                  <div class="grade-title-row">
+                    <h4 class="grade-classification-title" id="gradeTitleText">Outstanding Performance</h4>
+                    <span class="grade-score-pill" id="gradeScorePill">95%</span>
+                  </div>
+                  <p class="grade-performance-msg" id="gradePerformanceMsg">
+                    Exceptional mastery of subject concepts and superior demonstration of learning outcomes.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Standard Grade Threshold Scale Reference -->
+            <div class="panel-card">
+              <div class="panel-card-header">
+                <h3>Grading Threshold Scale</h3>
+                <span class="badge badge-primary">Institutional Scale</span>
+              </div>
+              <p class="text-muted" style="margin-top: -8px; margin-bottom: 16px; font-size: 0.875rem;">
+                Preserved grading standards matching your original criteria:
+              </p>
+
+              <div class="grade-scale-table">
+                <div class="grade-scale-row">
+                  <div class="scale-letter grade-aplus">A+</div>
+                  <div class="scale-range">90 – 100%</div>
+                  <div class="scale-desc">Outstanding</div>
+                  <div class="scale-point">10.0 GP</div>
+                </div>
+                <div class="grade-scale-row">
+                  <div class="scale-letter grade-a">A</div>
+                  <div class="scale-range">80 – 89.9%</div>
+                  <div class="scale-desc">Excellent</div>
+                  <div class="scale-point">9.0 GP</div>
+                </div>
+                <div class="grade-scale-row">
+                  <div class="scale-letter grade-bplus">B+</div>
+                  <div class="scale-range">70 – 79.9%</div>
+                  <div class="scale-desc">Good</div>
+                  <div class="scale-point">8.0 GP</div>
+                </div>
+                <div class="grade-scale-row">
+                  <div class="scale-letter grade-b">B</div>
+                  <div class="scale-range">60 – 69.9%</div>
+                  <div class="scale-desc">Above Average</div>
+                  <div class="scale-point">7.0 GP</div>
+                </div>
+                <div class="grade-scale-row">
+                  <div class="scale-letter grade-c">C</div>
+                  <div class="scale-range">50 – 59.9%</div>
+                  <div class="scale-desc">Average / Pass</div>
+                  <div class="scale-point">6.0 GP</div>
+                </div>
+                <div class="grade-scale-row">
+                  <div class="scale-letter grade-f">F</div>
+                  <div class="scale-range">Below 50%</div>
+                  <div class="scale-desc">Fail</div>
+                  <div class="scale-point">0.0 GP</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 5. NOTES VIEW                              -->
+        <!-- ========================================== -->
+        <section class="view-panel" id="view-notes" aria-labelledby="notes-title">
+          <div class="view-header">
+            <div>
+              <h2 class="view-heading" id="notes-title">Study Notes</h2>
+              <p class="view-subheading">Keep track of lecture takeaways, revision points, and assignments with real-time search and priority tagging.</p>
+            </div>
+            <div class="view-actions">
+              <button class="btn btn-primary" id="openNewNoteBtn" type="button">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                New Note
+              </button>
+            </div>
+          </div>
+
+          <!-- Note Composer Form Card (Collapsible) -->
+          <div class="panel-card note-composer-card" id="noteComposerCard" style="display: none;">
+            <div class="panel-card-header">
+              <h3 id="composerHeading">Create New Note</h3>
+              <button class="btn-icon" id="closeComposerBtn" aria-label="Cancel note creation">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+
+            <form id="noteForm">
+              <input type="hidden" id="editingNoteId" value="">
+              
+              <div class="form-row">
+                <div class="form-group flex-2">
+                  <label for="noteTitleInput" class="form-label">Note Title *</label>
+                  <input type="text" id="noteTitleInput" class="form-control" placeholder="e.g. Operating Systems: Deadlock Algorithms" required>
+                </div>
+                <div class="form-group flex-1">
+                  <label for="noteCategorySelect" class="form-label">Category</label>
+                  <select id="noteCategorySelect" class="form-control">
+                    <option value="Lecture">Lecture</option>
+                    <option value="Assignment">Assignment</option>
+                    <option value="Exam Prep">Exam Prep</option>
+                    <option value="Research">Research</option>
+                    <option value="General">General</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="noteContentInput" class="form-label">Note Content *</label>
+                <textarea id="noteContentInput" class="form-control" rows="5" placeholder="Write your notes, formula reminders, and study references here..." required></textarea>
+              </div>
+
+              <div class="composer-footer">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="noteImportantCheckbox">
+                  <span class="custom-checkbox"></span>
+                  <span>Mark as Important (High Priority)</span>
+                </label>
+
+                <div class="composer-buttons">
+                  <button type="button" class="btn btn-secondary" id="cancelNoteBtn">Cancel</button>
+                  <button type="submit" class="btn btn-primary" id="saveNoteBtn">Save Note</button>
+                </div>
+              </div>
+
+              <div class="form-error-banner" id="noteFormErrorBanner" style="display: none;">
+                <span id="noteFormErrorText">Please fill in both title and content.</span>
+              </div>
+            </form>
+          </div>
+
+          <!-- Notes Filter & Search Toolbar -->
+          <div class="toolbar-card">
+            <div class="search-input-wrapper">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="notesSearchInput" class="search-input" placeholder="Search notes by title, tag, or content...">
+              <button class="clear-search-btn" id="notesClearSearchBtn" aria-label="Clear search">✕</button>
+            </div>
+
+            <div class="filter-pills" role="radiogroup" aria-label="Filter notes by importance">
+              <button class="filter-pill active" data-filter="all" id="notesFilterAll">All Notes</button>
+              <button class="filter-pill" data-filter="important" id="notesFilterImportant">★ Important</button>
+            </div>
+          </div>
+
+          <!-- Dynamic Notes Grid -->
+          <div class="notes-grid" id="notesGrid" aria-live="polite">
+            <!-- Dynamic note cards inserted here -->
+          </div>
+
+          <!-- Friendly Empty State -->
+          <div class="empty-state" id="notesEmptyState" style="display: none;">
+            <div class="empty-state-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+              </svg>
+            </div>
+            <h4 class="empty-state-title" id="notesEmptyTitle">No notes found</h4>
+            <p class="empty-state-desc" id="notesEmptyDesc">Organize your study journey by creating your first note.</p>
+            <button class="btn btn-primary" onclick="NotesManager.openComposer()">Create Note</button>
+          </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- 6. BACKLOG TRACKER VIEW                    -->
+        <!-- ========================================== -->
+        <section class="view-panel" id="view-backlog" aria-labelledby="backlog-title">
+          <div class="view-header">
+            <div>
+              <h2 class="view-heading" id="backlog-title">Backlog & Arrear Tracker</h2>
+              <p class="view-subheading">Track pending exams, incomplete course modules, and clearance progress with automated dashboard sync.</p>
+            </div>
+          </div>
+
+          <!-- Backlog Stats Header Row -->
+          <div class="backlog-stats-row">
+            <div class="backlog-stat-chip">
+              <span class="chip-number" id="backlogTotalCount">0</span>
+              <span class="chip-label">Total Backlogs</span>
+            </div>
+            <div class="backlog-stat-chip pending-chip">
+              <span class="chip-number" id="backlogPendingCount">0</span>
+              <span class="chip-label">Pending / Uncleared</span>
+            </div>
+            <div class="backlog-stat-chip completed-chip">
+              <span class="chip-number" id="backlogCompletedCount">0</span>
+              <span class="chip-label">Cleared / Passed</span>
+            </div>
+          </div>
+
+          <!-- Add Subject Form Card -->
+          <div class="panel-card">
+            <div class="panel-card-header">
+              <h3>Record Subject Backlog</h3>
+            </div>
+
+            <form id="backlogForm" onsubmit="event.preventDefault(); BacklogManager.addSubject();">
+              <div class="form-row">
+                <div class="form-group flex-2">
+                  <label for="backlogSubjectInput" class="form-label">Subject Name *</label>
+                  <input type="text" id="backlogSubjectInput" class="form-control" placeholder="e.g. Engineering Mathematics II" required>
+                </div>
+                <div class="form-group flex-1">
+                  <label for="backlogCodeInput" class="form-label">Course Code / Semester</label>
+                  <input type="text" id="backlogCodeInput" class="form-control" placeholder="e.g. MAT201 • Sem 2">
+                </div>
+                <div class="form-group flex-auto" style="align-self: flex-end;">
+                  <button type="submit" class="btn btn-primary" id="addBacklogSubmitBtn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="12" y1="5" x2="12" y2="19"></line>
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    Add to Backlog
+                  </button>
+                </div>
+              </div>
+
+              <!-- In-UI Backlog Error -->
+              <div class="form-error-banner" id="backlogErrorBanner" style="display: none;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="12" y1="8" x2="12" y2="12"></line>
+                  <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <span id="backlogErrorText">Please enter a valid subject name.</span>
+              </div>
+            </form>
+          </div>
+
+          <!-- Backlog Filter & Search Toolbar -->
+          <div class="toolbar-card">
+            <div class="search-input-wrapper">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="backlogSearchInput" class="search-input" placeholder="Search backlogs by course name or semester...">
+              <button class="clear-search-btn" id="backlogClearSearchBtn" aria-label="Clear search">✕</button>
+            </div>
+
+            <div class="filter-pills" role="radiogroup" aria-label="Filter backlog by status">
+              <button class="filter-pill active" data-backlog-filter="all" id="backlogFilterAll">All</button>
+              <button class="filter-pill" data-backlog-filter="pending" id="backlogFilterPending">Pending</button>
+              <button class="filter-pill" data-backlog-filter="completed" id="backlogFilterCompleted">Cleared</button>
+            </div>
+          </div>
+
+          <!-- Backlog List -->
+          <div class="backlog-items-container" id="backlogListContainer" aria-live="polite">
+            <!-- Dynamic backlog cards inserted here -->
+          </div>
+
+          <!-- Empty State -->
+          <div class="empty-state" id="backlogEmptyState" style="display: none;">
+            <div class="empty-state-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <h4 class="empty-state-title" id="backlogEmptyTitle">No backlog records found</h4>
+            <p class="empty-state-desc" id="backlogEmptyDesc">All clean! You have no pending arrears or subjects recorded.</p>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- Developer Credit Section (Placed neatly near bottom, above footer) -->
+      <section class="dev-credit-section" aria-label="Developer Information">
+        <div class="dev-credit-card">
+          <div class="dev-credit-author">
+            <span class="dev-credit-label">Designed &amp; Developed by</span>
+            <span class="dev-credit-name">Harsh Kumar</span>
+          </div>
+          <div class="dev-credit-contacts">
+            <a href="mailto:guptaharsh90211@gmail.com" class="dev-link" title="Email Harsh Kumar">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              <span>guptaharsh90211@gmail.com</span>
+            </a>
+            <a href="https://github.com/Harshgupta90211" target="_blank" rel="noopener noreferrer" class="dev-link" title="Harsh Kumar on GitHub">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+              </svg>
+              <span>GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/harsh-gupta-611644377" target="_blank" rel="noopener noreferrer" class="dev-link" title="Harsh Kumar on LinkedIn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                <rect x="2" y="9" width="4" height="12"></rect>
+                <circle cx="4" cy="4" r="2"></circle>
+              </svg>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- App Footer -->
+      <footer class="app-footer">
+        <p class="footer-text">Student Toolkit &bull; Smart tools for students</p>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Toast Notification System (Non-intrusive UI alerts) -->
+  <div class="toast-stack" id="toastStack" role="status" aria-live="polite"></div>
+
+  <!-- Main Application Logic Script -->
+  <script src="script.js"></script>
+</body>
+</html>
