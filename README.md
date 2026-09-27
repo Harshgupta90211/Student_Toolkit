@@ -40,9 +40,34 @@ Student_Toolkit/
 ├── script.js       # Application logic
 └── README.md       # Project documentation
 
+## 🚀 Getting Started
+
+Follow these steps to run Student Toolkit on your local machine.
+
+### Prerequisites
+
+You only need:
+
+- A modern web browser
+- VS Code (recommended)
+- Live Server extension (optional)
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/YOUR-USERNAME/Student_Toolkit.git
+
+2. Open the project folder:
+
+cd Student_Toolkit
+
+3. Open the project in VS Code:
+code .
+...
 
 🔮 Future Improvements
-
 Planned features may include:
 
 📚 Study Planner
@@ -53,6 +78,7 @@ Planned features may include:
 🎯 Backlog Tracker
 💾 Local data storage
 🌐 More student productivity tools
+
 
 🎯 Purpose
 
